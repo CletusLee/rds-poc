@@ -6,7 +6,8 @@ pipeline {
     }
     environment {
         clusterName = 'chc-microservice'
-        serviceName = 'rdc-poc'
+        serviceName = 'rds-poc'
+        repositoryName = 'rds-poc'
         regionName = 'us-west-2'
     }
 
@@ -59,8 +60,8 @@ pipeline {
             steps {
                 script {
                     sh("eval \$(aws ecr get-login --no-include-email --region ${regionName} | sed 's|https://||')")
-                    docker.withRegistry('https://988532124766.dkr.ecr.us-west-2.amazonaws.com/rdc-poc') {
-                        customImage = docker.build("${serviceName}:${env.BUILD_ID}")
+                    docker.withRegistry('https://988532124766.dkr.ecr.us-west-2.amazonaws.com/${repositoryName}') {
+                        customImage = docker.build("${repositoryName}:${env.BUILD_ID}")
                         customImage.push()
                         customImage.push('latest')
                     }
@@ -78,7 +79,7 @@ pipeline {
             }
             steps {
                 withAWS(region:'us-west-2', credentials:'aws') {
-                    sh 'ecs-deploy -r us-west-2 -c ${clusterName} -n ${serviceName} -i 9988532124766.dkr.ecr.us-west-2.amazonaws.com/${serviceName}:${BUILD_ID} -t 6000'
+                    sh 'ecs-deploy -r us-west-2 -c ${clusterName} -n ${serviceName} -i 988532124766.dkr.ecr.us-west-2.amazonaws.com/${repositoryName}:${BUILD_ID} -t 6000'
                 }
             }
         }
