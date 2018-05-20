@@ -12,6 +12,6 @@ public class CustomerController {
 
     @RequestMapping("/")
     public String helloWorld() {
-        return "Hello World[" + myProperty + "]";
+        return "Hello World[" + myProperty + "]!!";
     }
 }
