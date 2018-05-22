@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,5 +28,10 @@ public class CustomerController {
     public ResponseEntity<Customer> getCustomer(@PathVariable Integer id) {
         Customer c = customerRepository.findById(id).get();
         return new ResponseEntity(c, HttpStatus.OK);
+    }
+
+    @GetMapping("/error")
+    public ResponseEntity getError() {
+        return new ResponseEntity(null, HttpStatus.BAD_GATEWAY);
     }
 }

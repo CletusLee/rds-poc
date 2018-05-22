@@ -1,5 +1,6 @@
 package home.cletus.rds.entity;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.Setter;
 
@@ -20,4 +21,8 @@ public class Customer {
 
     @Column(name = "age")
     private Integer age;
+
+    public Customer() {
+
+    }
 }
