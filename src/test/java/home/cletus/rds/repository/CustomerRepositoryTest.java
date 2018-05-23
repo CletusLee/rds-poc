@@ -13,7 +13,6 @@ import static org.junit.Assert.*;
 
 @DataJpaTest
 @RunWith(SpringRunner.class)
-@Transactional
 public class CustomerRepositoryTest {
 
     @Autowired
