@@ -2,6 +2,9 @@ package home.cletus.rds.controller;
 
 import home.cletus.rds.entity.Customer;
 import home.cletus.rds.repository.CustomerRepository;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -16,6 +19,13 @@ public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @ApiOperation("Add a new customer")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "successful"),
+                    @ApiResponse(code = 500, message = "internal sever error!!")
+            }
+    )
     @PutMapping("{id}")
     public ResponseEntity addCustomer(@PathVariable Integer id, @RequestBody Customer customer) {
         customer.setId(id);
@@ -24,12 +34,14 @@ public class CustomerController {
         return new ResponseEntity(customer, HttpStatus.OK);
     }
 
+    @ApiOperation("get a customer data")
     @GetMapping("{id}")
     public ResponseEntity<Customer> getCustomer(@PathVariable Integer id) {
         Customer c = customerRepository.findById(id).get();
         return new ResponseEntity(c, HttpStatus.OK);
     }
 
+    @ApiOperation("Generate an error")
     @GetMapping("/error")
     public ResponseEntity getError() {
         return new ResponseEntity(null, HttpStatus.BAD_GATEWAY);
