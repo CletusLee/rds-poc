@@ -1,9 +1,6 @@
 package home.cletus.rds.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +8,7 @@ import javax.persistence.*;
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "customer")
 public class Customer {
 
@@ -25,7 +23,6 @@ public class Customer {
     @Column(name = "age")
     private Integer age;
 
-    public Customer() {
-
-    }
+    @Column(name = "money")
+    private Long money;
 }
