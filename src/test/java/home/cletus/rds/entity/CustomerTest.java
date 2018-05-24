@@ -3,12 +3,10 @@ package home.cletus.rds.entity;
 import io.github.benas.randombeans.EnhancedRandomBuilder;
 import io.github.benas.randombeans.api.EnhancedRandom;
 import io.github.benas.randombeans.randomizers.range.LongRangeRandomizer;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import static io.github.benas.randombeans.api.EnhancedRandom.random;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
 
 public class CustomerTest {
 
