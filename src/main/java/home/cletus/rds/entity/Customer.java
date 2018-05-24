@@ -1,5 +1,6 @@
 package home.cletus.rds.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,8 +19,10 @@ public class Customer {
     private Integer id;
 
     @Column(name = "name")
+    @ApiModelProperty(notes = "name of the customer")
     private String name;
 
+    @ApiModelProperty(notes = "user age")
     @Column(name = "age")
     private Integer age;
 
